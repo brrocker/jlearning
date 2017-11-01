@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import object.Dog;
 import object.Woman;
@@ -25,12 +28,14 @@ import thread.ThreadNotify2;
 import thread.ThreadTest;
 import thread.ThreadTest2;
 import thread.ThreadTest3;
+import thread.ThreadTest4;
+import thread.ThreadTest5;
 
 public class Env {
 	public static void main(String[] a) throws Exception {
 		Ut.pt("Hello World!");
-		Apple a1 = new Apple();
-		a1.appleColor = Apple.color.blue;
+		/*Apple a1 = new Apple();
+		a1.appleColor = Apple.color.blue;*/
 		
 		//testAssert(1);
 		//String t1 = "111";
@@ -51,8 +56,8 @@ public class Env {
 		Ut.pt("Process End");*/
 		
 		
-		Map map = new HashMap();
-		map.put("sum", 0);
+		/*Map map = new HashMap();
+		map.put("sum", 0);*/
 		/*Thread t1 = new Thread(new ThreadTest("Ta", map));
 		Thread t2 = new Thread(new ThreadTest("Tb", map));
 		Thread notify = new Thread(new ThreadNotify("notify", map));
@@ -62,7 +67,7 @@ public class Env {
 		t1.join();
 		t2.join();
 		Ut.pt("final sum:" + map.get("sum"));*/
-		ThreadTest2 th2 = new ThreadTest2("Ta", map);
+		/*ThreadTest2 th2 = new ThreadTest2("Ta", map);
 		Thread t1 = new Thread(th2);
 		Thread t2 = new Thread(th2);
 		t1.start();
@@ -76,7 +81,19 @@ public class Env {
 		ThreadNotify2 tn = new ThreadNotify2();
 		tn.doCallback(th3, 2000);
 		
-		Ut.pt("final sum:" + map.get("sum"));
+		Ut.pt("final sum:" + map.get("sum"));*/
+		
+		/*ExecutorService services = Executors.newCachedThreadPool();
+		for (int i=0;i<10;i++){
+			services.execute(new ThreadTest4(String.valueOf(i)));
+		}
+		
+		services.shutdown();
+		services.awaitTermination(10, TimeUnit.DAYS);
+		Ut.pt("process finish!");*/
+		
+		ThreadTest5 th5 = new ThreadTest5();
+		th5.start();
 	}
 	
 	public static void testMap(){
