@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import thread.ThreadTest2;
 import thread.ThreadTest3;
 import thread.ThreadTest4;
 import thread.ThreadTest5;
+import thread.ThreadTest6;
 
 public class Env {
 	public static void main(String[] a) throws Exception {
@@ -92,8 +94,50 @@ public class Env {
 		services.awaitTermination(10, TimeUnit.DAYS);
 		Ut.pt("process finish!");*/
 		
-		ThreadTest5 th5 = new ThreadTest5();
-		th5.start();
+		/*ThreadTest5 th5 = new ThreadTest5();
+		th5.start();*/
+		
+		/*ThreadTest6 th6 = new ThreadTest6();
+		th6.start();*/
+		
+		
+		
+		//Ut.pt(result.getClass() == String.class);
+		
+		//testByteArr();
+		
+		transferHex();
+	}
+	
+	public static void testByteArr() throws UnsupportedEncodingException {
+		String name = "肖奕";
+		
+		byte[] data = new byte[64];
+		
+		byte b[] = name.getBytes("GB2312");
+		Ut.pt(Arrays.toString(b));
+		
+		System.arraycopy(b, 0, data, 0, b.length);
+		Ut.pt(Arrays.toString(data));
+		
+		String newStr = new String(data, "GB2312");
+		newStr = newStr.substring(0,newStr.indexOf('\u0000')); 
+		Ut.pt(newStr);
+	}
+	
+	public static void transferHex(){
+		String data = "C000BE0200000100D5C5C8FD000000000000000000000000000000000000000000000000000000003200000000000000000000000000000000000000000000000000000000000000323031372D31312D30372031303A30383A35310032000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020030303130303400000000000000000000000000000000000000000000000000000100";
+		StringBuffer newdata = new StringBuffer();
+		char[] arr = data.toCharArray();
+		for(int i = 0;i<arr.length;i++){
+			if(i%2 == 0){
+				newdata.append(",0x");
+			}
+			newdata.append(arr[i]);
+		}
+		
+		Ut.pt(newdata);
+	
 	}
 	
 	public static void testMap(){
