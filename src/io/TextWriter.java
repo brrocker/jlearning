@@ -16,7 +16,7 @@ public class TextWriter {
              File writename = new File("D:/tmp/input.txt"); // 相对路径，如果没有则要建立一个新的output。txt文件  
              writename.createNewFile(); // 创建新文件  
              BufferedWriter out = new BufferedWriter(new FileWriter(writename));  
-             out.write("我会写入文件啦\r\n"); // \r\n即为换行  
+             out.write("abcdefg"); // \r\n即为换行  
              out.flush(); // 把缓存区内容压入文件  
              out.close(); // 最后记得关闭文件  
              
@@ -28,10 +28,9 @@ public class TextWriter {
              BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言  
              String line = "";  
              line = br.readLine();  
-             Ut.pt(line);
              while (line != null) {  
+            	 Ut.pt(line);
                  line = br.readLine(); // 一次读入一行数据  
-                 Ut.pt(line);
              } 
 
          } catch (Exception e) {  
