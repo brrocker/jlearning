@@ -11,6 +11,7 @@ public class ThreadTest5 {
 	
 	public void start(){
 		ExecutorService services = Executors.newCachedThreadPool();
+		//ExecutorService services = Executors.newFixedThreadPool(1);
 		for (int i=0;i<10;i++){
 			services.execute(new LocalThread(String.valueOf(i)));
 		}
